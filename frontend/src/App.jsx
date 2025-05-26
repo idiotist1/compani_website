@@ -1,7 +1,10 @@
-import React from "react";
-import Navbar from "./Components/NavBar/Navbar";
+import "./App.css";
+
 import Footer from "./Components/Footer/Footer";
-import { RouterProvider, createBrowserRouter, Outlet } from "react-router-dom";
+import Navbar from "./Components/Navbar/Navbar";
+
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+
 import MainPage from "./Page/MainPage/MainPage";
 import About from "./Page/About/About";
 import Leadership from "./Page/Leadership/Leadership";
@@ -16,7 +19,7 @@ function Layout() {
       <Outlet />
       <Footer />
     </>
-  )
+  );
 }
 
 const router = createBrowserRouter([
@@ -47,13 +50,13 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
-      },
+      }
     ]
   }
 ])
 
-const App = () => {
+function App() {
   return <RouterProvider router={router} />;
-};
+}
 
 export default App;
