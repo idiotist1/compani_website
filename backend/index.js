@@ -1,11 +1,25 @@
+require("dotenv").config();
 const express = require("express");
+const mongoose = require("mongoose");
 const app = express();
-const PROT = 3000;
+const PORT = 3000;
 
-app.get("/", (req, res) =>{
-    res.send("Hello world"); //Hello world를 Endpoint에 보낸다.
+const userRoutes = require("./routes/user");
+
+app.use(express.json())
+app.use(express.urlencoded())
+
+app.use("/api/auth", userRoutes);
+
+app.get("/", (req, res) => {
+  res.send("Hello world");
 });
 
-app.listen(PROT, ()=>{
-    console.log("Server is Running");
-})
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("MongoDB와 연결이 되었습니다."))
+  .catch((error) => console.log("MongoDB와 연결에 실패했습니다: ", error));
+
+app.listen(PORT, () => {
+  console.log("Server is running");
+});
