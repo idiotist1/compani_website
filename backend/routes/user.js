@@ -32,16 +32,14 @@ router.post("/signup", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
-    //password는 mongoDB에서 제외하고 보내므로 password까지 같이 받아온다.
+
     const user = await User.findOne({ username }).select("+password");
 
     if (!user) {
-      //user정보가 없다면
       return res.status("401").json({ message: "사용자를 찾을 수 없습니다." });
     }
 
     if (!user.isActive) {
-      //비밀번호를 5회 이상 틀려 잠긴 계정인 경우
       return res
         .status(401)
         .json({ message: "비활성화된 계정입니다. 관리자에게 문의하세요." });
@@ -53,55 +51,51 @@ router.post("/login", async (req, res) => {
         .json({ message: "이미 다른 기기에서 로그인되어 있습니다." });
     }
 
-    //비밀번호가 일치하는지 검증
     const isValidPassword = await bcrypt.compare(password, user.password);
-
     if (!isValidPassword) {
-      //비밀번호가 틀렷다면
-      user.failedLoginAttempts += 1; //틀린 횟수 증가
+      user.failedLoginAttempts += 1;
       user.lastLoginAttempt = new Date();
-      //5회 이상 틀렸다면
+
       if (user.failedLoginAttempts >= 5) {
         user.isActive = false;
         await user.save();
         return res.status(401).json({
-          message: "비밀번호를 5회 이상 틀려 계정이 비활성화 되었습니다.",
+          message: "비밀번호를 5회 이상 틀려 계정이 비활성화되었습니다.",
         });
       }
+
       await user.save();
-      return res
-        .status(401)
-        .json({
-          message: "비밀번호가 일치하지 않습니다.",
-          remainingAttempts: 5 - user.failedLoginAttempts,
-        });
+      return res.status(401).json({
+        message: "비밀번호가 일치하지 않습니다.",
+        remainingAttempts: 5 - user.failedLoginAttempts,
+      });
     }
 
     user.failedLoginAttempts = 0;
     user.lastLoginAttempt = new Date();
     user.isLoggedIn = true;
 
-    try {
-      //공인 ip를 가져온다.(보안이 취약한곳에서는 조심해야한다.)
-      const response = await axios.get("https://api.ipify.org?format=json");
-      const ipAddress = response.data.ip;
-      user.ipAddress = ipAddress;
-    } catch (error) {
-      console.log("IP 주소를 가져오던 중 오류 발생: ", error, message);
-    }
+    // try {
+    //   const response = await axios.get("https://api.ipify.org?format=json");
+    //   const ipAddress = response.data.ip;
+    //   user.ipAddress = ipAddress;
+    // } catch (error) {
+    //   console.log("IP 주소를 가져오던 중 오류 발생: ", error.message);
+    // }
+
     await user.save();
 
     const token = jwt.sign(
       { userId: user._id, username: user.username },
       process.env.JWT_SECRET,
-      { expiresIn: "24h" } //유효시간(24시간 후 다시 로그인 해야한다)
+      { expiresIn: "24h" }
     );
 
     console.log(token);
 
     res.cookie("token", token, {
       httpOnly: true,
-      secure: false,
+      secure: "production",
       sameSite: "strict",
       maxAge: 24 * 60 * 60 * 1000,
     });
@@ -138,7 +132,7 @@ router.post("/logout", async (req, res) => {
 
     res.clearCookie("token", {
       httpOnly: true,
-      secure: false,
+      secure: "production",
       sameSite: "strict",
     });
 
@@ -158,6 +152,25 @@ router.delete("/delete/:userId", async (req, res) => {
     res.json({ message: "사용자가 성공적으로 삭제되었습니다." });
   } catch (error) {
     res.status(500).json({ message: "서버 오류가 발생했습니다." });
+  }
+});
+
+router.post("/verify-token", (req, res) => {
+  const token = req.cookies.token;
+
+  if (!token) {
+    return res
+      .status(400)
+      .json({ isValid: false, message: "토큰이 없습니다." });
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    return res.status(200).json({ isValid: true, user: decoded });
+  } catch (error) {
+    return res
+      .status(401)
+      .json({ isValid: false, message: "유효하지 않은 토큰입니다." });
   }
 });
 
