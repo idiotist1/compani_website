@@ -1,4 +1,4 @@
-const { S3Client, PutObjectCommand, S3Client } = require("@aws-sdk/client-s3");
+const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
 const multer = require("multer");
 const { v4: uuidv4 } = require("uuid");
 const router = require("express").Router();
@@ -12,14 +12,14 @@ const s3Client = new S3Client({
 });
 
 const imageUpload = multer({
-  storag: multer.memoryStorage(),
+  storage: multer.memoryStorage(),
   limits: {
     fileSize: 5 * 1024 * 1024,
   },
 });
 
 const fileUpload = multer({
-  storag: multer.memoryStorage(),
+  storage: multer.memoryStorage(),
   limits: {
     fileSize: 50 * 1024 * 1024,
   },
@@ -41,7 +41,7 @@ router.post(
     try {
       const file = req.file;
       const fileExtension = file.originalname.split(".").pop();
-      const fileName = `${uuidv4()}.${fileExtension}`; //파일이름을 유니크한 아이디로 변경한다.
+      const fileName = `${uuidv4()}.${fileExtension}`;
 
       const uploadParams = {
         Bucket: process.env.AWS_BUCKET_NAME,
@@ -70,20 +70,20 @@ router.post(
     try {
       const file = req.file;
       const originalName = req.body.originalName;
-      const decodeFileName = decodeURIComponent(originalName);
+      const decodedFileName = decodeURIComponent(originalName);
 
       const uploadParams = {
         Bucket: process.env.AWS_BUCKET_NAME,
-        Key: `post-files/${decodeFileName}`,
+        Key: `post-files/${decodedFileName}`,
         Body: file.buffer,
         ContentType: file.mimetype,
-        ContentDisposition: `attachment; filename*=UTF-8''${encodeURIComponent(decodeFileName)}`,
+        ContentDisposition: `attachment; filename*=UTF-8''${encodeURIComponent(decodedFileName)}`,
       };
 
       const command = new PutObjectCommand(uploadParams);
       await s3Client.send(command);
 
-      const fileUrl = `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/post-files/${decodeFileName}`;
+      const fileUrl = `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/post-files/${decodedFileName}`;
       res.json({ fileUrl });
     } catch (error) {
       console.log(error);
