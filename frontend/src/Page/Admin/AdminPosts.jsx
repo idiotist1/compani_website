@@ -77,7 +77,9 @@ const AdminPosts = () => {
       </div>
 
       <div className="mb-4 flex justify-between items-center">
-        <div className="text-lg font-bold text-gray-600">총 {paginatedPosts.length}개의 게시물</div>
+        <div className="text-lg font-bold text-gray-600">
+          총 {paginatedPosts.length}개의 게시물
+        </div>
 
         <div className="flex items-center space-x-2">
           <label className="text-base font-bold text-gray-600">
@@ -192,7 +194,12 @@ const AdminPosts = () => {
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex justify-end space-x-2">
-                      <button className="px-3 py-1.5 bg-blue-500 text-white rounded hover:bg-blue-600 whitespace-nowrap writing-normal">
+                      <button
+                        className="px-3 py-1.5 bg-blue-500 text-white rounded hover:bg-blue-600 whitespace-nowrap writing-normal"
+                        onClick={() =>
+                          (window.location.href = `/admin/edit-post/${post._id}`)
+                        }
+                      >
                         수정
                       </button>
                       <button className="px-3 py-1.5 bg-red-500 text-white rounded hover:bg-red-600 whitespace-nowrap writing-normal">
@@ -226,6 +233,9 @@ const AdminPosts = () => {
                   <a
                     href={`/admin/edit-post/${post._id}`}
                     className="text-sm 2xl:text-base text-blue-600 hover:text-blue-800 whitespace-nowrap writing-normal"
+                    onClick={() =>
+                      (window.location.href = `/admin/edit-post/${post._id}`)
+                    }
                   >
                     수정
                   </a>

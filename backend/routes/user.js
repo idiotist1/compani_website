@@ -45,11 +45,11 @@ router.post("/login", async (req, res) => {
         .json({ message: "비활성화된 계정입니다. 관리자에게 문의하세요." });
     }
 
-    if (user.isLoggedIn) {
-      return res
-        .status(401)
-        .json({ message: "이미 다른 기기에서 로그인되어 있습니다." });
-    }
+    // if (user.isLoggedIn) {
+    //   return res
+    //     .status(401)
+    //     .json({ message: "이미 다른 기기에서 로그인되어 있습니다." });
+    // }
 
     const isValidPassword = await bcrypt.compare(password, user.password);
     if (!isValidPassword) {
