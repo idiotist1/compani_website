@@ -17,14 +17,17 @@ import MainPage from "./Page/MainPage/MainPage";
 import About from "./Page/About/About";
 import Leadership from "./Page/Leadership/Leadership";
 import Board from "./Page/Board/Board";
+import SinglePost from "./Page/SinglePost/SinglePost";
 import Services from "./Page/Services/Services";
 import Contact from "./Page/Contact/Contact";
 
 import AdminLogin from "./Page/Admin/AdminLogin";
 import AdminPosts from "./Page/Admin/AdminPosts";
+import AdminEditPost from "./Page/Admin/AdminEditPost";
 import AdminCreatePost from "./Page/Admin/AdminCreatePost";
 import AdminContacts from "./Page/Admin/AdminContacts";
-import AdminEditPost from "./Page/Admin/AdminEditPost";
+
+
 
 function AuthRedirectRoute() {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
@@ -53,7 +56,7 @@ function AuthRedirectRoute() {
   return isAuthenticated ? <Navigate to="/admin/posts" replace /> : <Outlet />;
 }
 
-function ProtectedRoute(){
+function ProtectedRoute() {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
   const [user, setUser] = useState(null);
 
@@ -70,7 +73,7 @@ function ProtectedRoute(){
       } catch (error) {
         console.log("토큰 인증 실패: ", error);
         setIsAuthenticated(false);
-        serUser(null);
+        setUser(null);
       }
     };
     verifyToken();
@@ -87,21 +90,21 @@ function ProtectedRoute(){
   )
 }
 
-function AdminLayout() {
-  return (
-    <>
-      <AdminNavbar />
-      <Outlet />
-    </>
-  );
-}
-
 function Layout() {
   return (
     <>
       <Navbar />
       <Outlet />
       <Footer />
+    </>
+  );
+}
+
+function AdminLayout() {
+  return (
+    <>
+      <AdminNavbar />
+      <Outlet />
     </>
   );
 }
@@ -128,6 +131,10 @@ const router = createBrowserRouter([
         element: <Board />,
       },
       {
+        path: "/post/:id",
+        element: <SinglePost />
+      },
+      {
         path: "/our-services",
         element: <Services />,
       },
@@ -144,7 +151,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <ProtectedRoute />, //ProtectedRoute에서 토큰검증을 한다.
+    element: <ProtectedRoute />,
     children: [
       {
         element: <AdminLayout />,
@@ -166,8 +173,8 @@ const router = createBrowserRouter([
             element: <AdminContacts />,
           },
         ],
-      },
-    ],
+      }
+    ]
   },
 ]);
 
