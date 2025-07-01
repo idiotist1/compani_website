@@ -37,6 +37,7 @@ const About = () => {
   };
 
   return (
+    <div className="bg-black">
     <motion.div
       className="container mx-auto px-4 py-32 max-w-7xl"
       initial="hidden"
@@ -53,7 +54,7 @@ const About = () => {
             className="text-2xl md:text-4xl font-bold mb-2 md:mb-3"
             variants={fadeInVariants}
           >
-            ABC Company
+            Company
           </motion.h3>
           <motion.p
             className="text-base md:text-xl font-light"
@@ -63,93 +64,8 @@ const About = () => {
           </motion.p>
         </div>
       </motion.div>
-
-      <motion.div
-        className="mb-24 max-w-4xl mx-auto"
-        variants={fadeInVariants}
-        custom={1}
-      >
-        <h2 className="text-4xl font-bold mb-8 text-slate-800 text-center">
-          {t("title")}
-        </h2>
-        <div className="text-lg leading-relaxed text-gray-600 space-y-6">
-          <p>
-            {t("description.part1")} {t("description.part2")}
-          </p>
-          <p>
-            {t("description.part3")} {t("description.part4")}
-          </p>
-        </div>
-      </motion.div>
-
-      <motion.div
-        className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-24"
-        variants={fadeInVariants}
-        custom={2}
-      >
-        {[
-          { key: "innovation" },
-          { key: "trust" },
-          { key: "growth" },
-        ].map((value, index) => (
-          <motion.div
-            key={index}
-            className="bg-white p-10 rounded-xl shadow-lg text-center hover:shadow-2xl transition-all duration-300 border border-gray-100"
-            variants={fadeInVariants}
-            custom={index + 3}
-          >
-            <h3 className="text-2xl font-bold mb-4 text-indigo-600">
-              {t(`values.${value.key}.title`)}
-            </h3>
-            <p className="text-gray-600 text-lg">{t(`values.${value.key}.desc`)}</p>
-          </motion.div>
-        ))}
-      </motion.div>
-
-      <motion.div
-        className="mb-24 max-w-4xl mx-auto text-center"
-        variants={fadeInVariants}
-        custom={4}
-      >
-        <h2 className="text-4xl font-bold mb-8 text-slate-800">{t("vision.title")}</h2>
-        <p className="text-2xl leading-relaxed text-gray-600 font-light">
-          "{t("vision.content")}"
-        </p>
-      </motion.div>
-
-      <motion.div
-        className="mb-24"
-        variants={fadeInVariants}
-        custom={5}
-      >
-        <h2 className="text-4xl font-bold mb-12 text-slate-800 text-center">
-          {t("history.title")}
-        </h2>
-        <div className="space-y-12 max-w-5xl mx-auto">
-          {Object.entries(t("history.events")).map(([year, event], index) => (
-            <motion.div
-              key={index}
-              className={`flex items-center gap-8 ${
-                index % 2 === 0 ? "flex-row" : "flex-row-reverse"
-              }`}
-              variants={fadeInVariants}
-              custom={index + 6}
-            >
-              <div className="w-1/2 text-center">
-                <div className="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300 border border-gray-100">
-                  <h3 className="text-2xl font-bold mb-3 text-indigo-600">
-                    {year}
-                  </h3>
-                  <p className="text-gray-700 text-lg">{event}</p>
-                </div>
-              </div>
-              <div className="w-4 h-4 bg-indigo-600 rounded-full"></div>
-              <div className="w-1/2"></div>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
     </motion.div>
+    </div>
   );
 };
 

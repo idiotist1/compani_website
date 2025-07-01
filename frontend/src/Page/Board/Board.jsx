@@ -79,13 +79,14 @@ const Board = () => {
   };
 
   return (
+    <div className="bg-black">
     <motion.div
       className="p-4 mx-auto max-w-7xl py-32"
       initial="hidden"
       animate="visible"
     >
       <motion.h1
-        className="text-4xl font-bold mb-6 text-center"
+        className="text-4xl text-white font-bold mb-6 text-center"
         variants={fadeIn}
         custom={0}
       >
@@ -267,6 +268,7 @@ const Board = () => {
         </button>
       </motion.div>
     </motion.div>
+    </div>
   );
 };
 

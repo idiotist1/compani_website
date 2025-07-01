@@ -7,8 +7,6 @@ const MainPage = () => {
   return (
     <div>
       <Hero />
-      <Forum />
-      <Contact />
     </div>
   )
 }

@@ -1,8 +1,7 @@
 {
   "ko": {
     "contact": {
-      "title": "문의하기",
-      "subtitle": "태양광 설비 설치부터 유지보수까지, 전문가와 상담하세요. 24시간 내에 답변드리겠습니다.",
+      "title": "찾아오시는 길",
       "form": {
         "name": "이름",
         "email": "이메일",
@@ -43,7 +42,6 @@
   "en": {
     "contact": {
       "title": "Contact Us",
-      "subtitle": "From solar installation to maintenance, consult with our experts. We'll respond within 24 hours.",
       "form": {
         "name": "Name",
         "email": "Email",

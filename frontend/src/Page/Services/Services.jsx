@@ -21,33 +21,6 @@ const Services = () => {
     return keys.reduce((obj, k) => obj[k], ServicesLocale[language]);
   };
 
-  const servicesList = [
-    {
-      id: 1,
-      title: "맞춤형 소프트웨어 개발",
-      description: "고객의 요구사항에 맞는 최적화된 솔루션을 제공합니다.",
-      icon: "💻",
-    },
-    {
-      id: 2,
-      title: "클라우드 서비스",
-      description: "안정적이고 확장 가능한 클라우드 인프라 구축 및 관리",
-      icon: "☁️",
-    },
-    {
-      id: 3,
-      title: "보안 솔루션",
-      description: "최신 보안 기술을 적용한 안전한 시스템 구축",
-      icon: "🔒",
-    },
-    {
-      id: 4,
-      title: "기술 컨설팅",
-      description: "전문가의 분석을 통한 최적의 기술 전략 수립",
-      icon: "📊",
-    },
-  ];
-
   const fadeInVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: (i) => ({
@@ -58,8 +31,9 @@ const Services = () => {
   };
 
   return (
+    <div className="bg-black">
     <motion.div
-      className="container mx-auto px-4 py-32 max-w-7xl"
+      className="container mx-auto px-4 py-32 max-w-7xl "
       initial="hidden"
       animate="visible"
     >
@@ -143,22 +117,8 @@ const Services = () => {
         </div>
       </motion.div>
 
-      <motion.div
-        className="mt-32 bg-blue-600 rounded-2xl p-12 text-center text-white"
-        variants={fadeInVariants}
-        custom={8}
-      >
-        <h2 className="text-3xl md:text-4xl font-bold mb-6">
-          {t("services.cta.title")}
-        </h2>
-        <p className="text-xl mb-8">
-          {t("services.cta.subtitle")}
-        </p>
-        <button className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors duration-300">
-          {t("services.cta.button")}
-        </button>
-      </motion.div>
     </motion.div>
+    </div>
   );
 };
 

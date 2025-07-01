@@ -61,7 +61,7 @@ const Forum = () => {
 
   return (
     <motion.div
-      className="bg-white"
+      className="bg-black"
       initial="hidden"
       animate="visible"
       variants={containerVariants}

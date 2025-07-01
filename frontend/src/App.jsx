@@ -15,7 +15,7 @@ import axios from "axios";
 
 import MainPage from "./Page/MainPage/MainPage";
 import About from "./Page/About/About";
-import Leadership from "./Page/Leadership/Leadership";
+import Project from "./Page/Project/Project";
 import Board from "./Page/Board/Board";
 import SinglePost from "./Page/SinglePost/SinglePost";
 import Services from "./Page/Services/Services";
@@ -123,8 +123,8 @@ const router = createBrowserRouter([
         element: <About />,
       },
       {
-        path: "/leadership",
-        element: <Leadership />,
+        path: "/project",
+        element: <Project />,
       },
       {
         path: "/board",
