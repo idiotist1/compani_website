@@ -4,16 +4,18 @@ import { motion } from "framer-motion";
 import ContactLocale from "../../Locale/Contact-Components.json";
 
 const Contact = () => {
-  const [language, setLanguage] = useState(localStorage.getItem('language') || 'ko');
+  const [language, setLanguage] = useState(
+    localStorage.getItem("language") || "ko"
+  );
 
   useEffect(() => {
     const handleLanguageChange = () => {
-      setLanguage(localStorage.getItem('language') || 'ko');
+      setLanguage(localStorage.getItem("language") || "ko");
     };
 
-    window.addEventListener('languageChange', handleLanguageChange);
+    window.addEventListener("languageChange", handleLanguageChange);
     return () => {
-      window.removeEventListener('languageChange', handleLanguageChange);
+      window.removeEventListener("languageChange", handleLanguageChange);
     };
   }, []);
 

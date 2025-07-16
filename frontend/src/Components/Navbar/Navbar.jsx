@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { HiMenu, HiX } from "react-icons/hi";
-import translations from '../../Locale/Navbar.json';
+import translations from "../../Locale/Navbar.json";
+import Button from "@mui/material/Button";
 
 const menuItems = [
   { path: "/", key: "home" },
@@ -28,11 +29,13 @@ const MenuItem = ({ path, label, onClick }) => (
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [language, setLanguage] = useState(localStorage.getItem('language') || 'ko');
+  const [language, setLanguage] = useState(
+    localStorage.getItem("language") || "ko"
+  );
 
   useEffect(() => {
-    localStorage.setItem('language', language);
-    window.dispatchEvent(new Event('languageChange'));
+    localStorage.setItem("language", language);
+    window.dispatchEvent(new Event("languageChange"));
   }, [language]);
 
   const toggleMenu = () => setIsOpen(!isOpen);
@@ -61,15 +64,22 @@ const NavBar = () => {
             ))}
           </ul>
         </div>
-
-        <select
-          value={language}
-          onChange={(e) => setLanguage(e.target.value)}
-          className="hidden lg:block px-3 py-1 ml-8 border rounded-md bg-black hover:border-gray-500 transition duration-300"
+        <button
+          value="ko"
+          onClick={(e) => setLanguage(e.target.value)}
+          className={`text-sm hidden lg:block px-1 py-1 ml-1 rounded-md hover:border-gray-500 transition duration-300
+    ${language === 'ko' ? ' text-white ring-2 ring-gray-400' : ''}`}
         >
-          <option value="ko">{translations.ko.language}</option>
-          <option value="en">{translations.en.language}</option>
-        </select>
+          KO
+        </button>
+        <button
+          value="en"
+          onClick={(e) => setLanguage(e.target.value)}
+          className={`text-sm hidden lg:block px-1 py-1 ml-1 rounded-md hover:border-gray-500 transition duration-300
+    ${language === 'en' ? ' text-white ring-2 ring-gray-400' : ''}`}
+        >
+          EN
+        </button>
 
         <button
           className="lg:hidden text-2xl"

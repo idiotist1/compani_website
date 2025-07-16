@@ -1,17 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import axios from "axios";
 import ContactLocale from "../../Locale/Contact.json";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-    status: "in progress",
-  });
-
   const [language, setLanguage] = useState(
     localStorage.getItem("language") || "ko"
   );
@@ -30,37 +21,6 @@ const Contact = () => {
   const t = (key) => {
     const keys = key.split(".");
     return keys.reduce((obj, k) => obj[k], ContactLocale[language]);
-  };
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post(
-        "http://localhost:3000/api/contact",
-        formData
-      );
-
-      if (response.status === 201) {
-        alert(t("contact.alerts.success"));
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          message: "",
-          status: "in progress",
-        });
-      }
-    } catch (error) {
-      console.log("Error: ", error);
-      alert(t("contact.alerts.error"));
-    }
   };
 
   const fadeInVariants = {
@@ -98,75 +58,6 @@ const Contact = () => {
             variants={fadeInVariants}
             custom={2}
           >
-            {/* <motion.div
-              className="bg-white rounded-2xl shadow-xl p-8"
-              variants={fadeInVariants}
-              custom={3}
-            >
-              <form onSubmit={handleSubmit}>
-                <div className="space-y-6">
-                  <div>
-                    <label className="block text-gray-700 font-medium mb-2">
-                      {t("contact.form.name")}
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      className="w-full p-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-colors duration-300"
-                      placeholder={t("contact.form.placeholders.name")}
-                      required
-                      value={formData.name}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-gray-700 font-medium mb-2">
-                      {t("contact.form.email")}
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      className="w-full p-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-colors duration-300"
-                      placeholder={t("contact.form.placeholders.email")}
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-gray-700 font-medium mb-2">
-                      {t("contact.form.phone")}
-                    </label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      className="w-full p-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-colors duration-300"
-                      placeholder={t("contact.form.placeholders.phone")}
-                      required
-                      value={formData.phone}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-gray-700 font-medium mb-2">
-                      {t("contact.form.message")}
-                    </label>
-                    <textarea
-                      name="message"
-                      className="w-full p-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-colors duration-300 h-40"
-                      placeholder={t("contact.form.placeholders.message")}
-                      required
-                      value={formData.message}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <button className="w-full bg-blue-600 text-white py-4 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-300">
-                    {t("contact.form.submit")}
-                  </button>
-                </div>
-              </form>
-            </motion.div> */}
-
             <motion.div
               className="bg-white rounded-2xl shadow-lg overflow-hidden"
               variants={fadeInVariants}
@@ -190,37 +81,15 @@ const Contact = () => {
             >
               <div>
                 <div className="space-y-1">
-                  <p className="text-white text-2xl">{t("contact.contact_info.address.info")}</p>
-                  <p className="text-gray-400 text-1xl" >{t("contact.contact_info.phone.info")}</p>
-                  <p className="text-gray-400 text-1xl" >{t("contact.contact_info.email.info")}</p>
-                  {/* {[
-                    {
-                      title: t("contact.contact_info.address.title"),
-                      info: t("contact.contact_info.address.info"),
-                      desc: t("contact.contact_info.address.desc"),
-                    },
-                    {
-                      title: t("contact.contact_info.phone.title"),
-                      info: t("contact.contact_info.phone.info"),
-                      desc: t("contact.contact_info.phone.desc"),
-                    },
-                    {
-                      title: t("contact.contact_info.email.title"),
-                      info: t("contact.contact_info.email.info"),
-                      desc: t("contact.contact_info.email.desc"),
-                    },
-                    
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-start">
-                      <div className="ml-4">
-                        <h2 className="font-bold text-gray-300">
-                          {item.title}
-                        </h2>
-                        <p className="text-gray-600">{item.info}</p>
-                        <p className="text-sm text-gray-500">{item.desc}</p>
-                      </div>
-                    </div>
-                  ))} */}
+                  <p className="text-white text-2xl">
+                    {t("contact.contact_info.address.info")}
+                  </p>
+                  <p className="text-gray-400 text-1xl">
+                    {t("contact.contact_info.phone.info")}
+                  </p>
+                  <p className="text-gray-400 text-1xl">
+                    {t("contact.contact_info.email.info")}
+                  </p>
                 </div>
               </div>
             </motion.div>

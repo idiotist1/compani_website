@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import Human1 from "../../assets/Human1.jpg";
+import Human1 from "../../assets/Human1.png";
 import ProjectLocale from "../../Locale/Project.json";
 
 const Project = () => {
@@ -51,26 +51,13 @@ const Project = () => {
           variants={fadeInVariants}
         >
           <div className="flex w-500 h-100 justify-start rounded-2xl n bg-white">
-            <img src={Human1} className="ml-4 mt-4 mb-4 rounded-2xl w-80 h-80 object-fill" />
+            <img src={Human1} className="ml-4 mt-4 mb-4 rounded-2xl w-80 h-80 object-cover" />
             <div className="flex flex-col justify-center items-start ml-7 mt-4 mb-4">
               <h1 className="text-3xl">개발중..</h1>
               <p className="text-2xl">개발중..</p>
             </div>
           </div>
 
-          {/* <motion.div
-          className="md:w-1/3"
-          variants={fadeInVariants}
-          custom={0.2}
-        >
-          <div className="rounded-xl overflow-hidden shadow-lg">
-            <img src={Human1} className="w-full aspect-[3/4] object-cover" />
-            <div className="p-4 bg-white">
-              <h3 className="text-xl font-bold text-gray-800">{t("ceoSection.name")}</h3>
-              <p className="text-indigo-600">{t("ceoSection.position")}</p>
-            </div>
-          </div>
-        </motion.div> */}
         </motion.div>
       </motion.div>
     </div>

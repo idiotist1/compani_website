@@ -1,50 +1,203 @@
 {
   "ko": {
     "board": {
-      "title": "채용 공고",
+      "title": "채용공고",
       "search": {
         "title": "제목",
         "placeholder": "검색어를 입력하세요",
-        "dateStart": "작성일 시작:",
-        "dateEnd": "작성일 끝:",
         "itemsPerPage": "페이지당 표시:",
         "itemsCount": "개"
-      },
-      "table": {
-        "number": "번호",
-        "title": "제목",
-        "date": "작성일",
-        "views": "조회수"
       },
       "pagination": {
         "prev": "이전",
         "next": "다음"
       },
       "noPosts": "게시글이 없습니다."
+    },
+    "services": {
+      "mainTitle": "방식은 다르지만 같은 목표를 향해갑니다.",
+      "subTitle": "방해물을 제거합니다.",
+      "list": [
+        {
+          "title": "식사지원",
+          "description": "점심과 저녁을 모두 제공합니다.",
+          "icon": "🍚"
+        },
+        {
+          "title": "간식제공",
+          "description": "간식을 제공합니다.",
+          "icon": "🍮"
+        },
+        {
+          "title": "야간 택시비 제공",
+          "description": "야간 택시비를 제공합니다.",
+          "icon": "🚕"
+        },
+        {
+          "title": "고사양 장비 제공",
+          "description": "고사양 장비를 제공합니다.",
+          "icon": "💻"
+        }
+      ],
+      "whyUs": {
+        "title": "기업문화",
+        "reasons": [
+          {
+            "title": "덕업일치",
+            "description": "좋아하는 일을 합니다."
+          },
+          {
+            "title": "도전정신",
+            "description": "새로운 도전을 주저하지 않습니다."
+          },
+          {
+            "title": "문제해결",
+            "description": "문제해결을 멈추지 않습니다."
+          }
+        ]
+      },
+      "process": {
+        "title": "채용 프로세스",
+        "steps": [
+          {
+            "step": "01",
+            "title": "서류 지원",
+            "desc": "홈페이지를 통한 서류 접수"
+          },
+          {
+            "step": "02",
+            "title": "기술 면접",
+            "desc": "서류 합격자에 한하여 면접 진행"
+          },
+          {
+            "step": "03",
+            "title": "임원 면접",
+            "desc": "임원 면접 진행"
+          },
+          {
+            "step": "04",
+            "title": "처우 협의",
+            "desc": "급여 및 복지 협의"
+          },
+          {
+            "step": "05",
+            "title": "최종 합격 및 입사",
+            "desc": "수습기간 3개월 적용"
+          }
+        ]
+      },
+      "category": {
+        "title": "카테고리",
+        "options": [
+          {
+            "option": "신입"
+          },
+          {
+            "option": "경력"
+          },
+          {
+            "option": "경력무관"
+          }
+        ]
+      }
     }
   },
   "en": {
     "board": {
-      "title": "Work Board",
+      "title": "Board",
       "search": {
         "title": "Title",
         "placeholder": "Enter search term",
-        "dateStart": "Start Date:",
-        "dateEnd": "End Date:",
         "itemsPerPage": "Items per page:",
         "itemsCount": "items"
-      },
-      "table": {
-        "number": "No.",
-        "title": "Title",
-        "date": "Date",
-        "views": "Views"
       },
       "pagination": {
         "prev": "Previous",
         "next": "Next"
       },
       "noPosts": "No posts available."
+    },
+    "services": {
+      "mainTitle": "Our Services",
+      "subTitle": "Supporting business success with innovative technology.",
+      "list": [
+        {
+          "title": "Custom Software Development",
+          "description": "Providing optimized solutions tailored to customer requirements.",
+          "icon": "💻"
+        },
+        {
+          "title": "Cloud Services",
+          "description": "Building and managing stable and scalable cloud infrastructure",
+          "icon": "☁️"
+        },
+        {
+          "title": "Security Solutions",
+          "description": "Building secure systems with the latest security technology",
+          "icon": "🔒"
+        },
+        {
+          "title": "Technical Consulting",
+          "description": "Establishing optimal technical strategies through expert analysis",
+          "icon": "📊"
+        }
+      ],
+      "whyUs": {
+        "title": "Why Choose Us?",
+        "reasons": [
+          {
+            "title": "10+ Years Experience",
+            "description": "Project experience across various industries"
+          },
+          {
+            "title": "Expert Team",
+            "description": "Composed of skilled developers and consultants"
+          },
+          {
+            "title": "24/7 Support",
+            "description": "Round-the-clock technical support service"
+          }
+        ]
+      },
+      "process": {
+        "title": "Project Process",
+        "steps": [
+          {
+            "step": "01",
+            "title": "Requirements Analysis",
+            "desc": "Accurately identifying customer needs and goals"
+          },
+          {
+            "step": "02",
+            "title": "Design & Planning",
+            "desc": "Establishing optimal solution design and development plans"
+          },
+          {
+            "step": "03",
+            "title": "Development & Testing",
+            "desc": "Systematic development and quality verification"
+          },
+          {
+            "step": "04",
+            "title": "Deployment & Maintenance",
+            "desc": "Stable service operation and continuous improvement"
+          }
+        ]
+      },
+      "category": {
+        "title": "Category",
+        "options": [
+          {
+            "option": "Newbie"
+          },
+          {
+            "option": "Experienced"
+          },
+          {
+            "option": "No Experience Required"
+          }
+        ]
+      }
     }
   }
 }

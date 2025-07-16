@@ -14,7 +14,7 @@
       "menu": "메뉴",
       "close": "닫기"
     },
-    "language": "Korean"
+    "language": "KO"
   },
   "en": {
     "menu": {
@@ -31,6 +31,6 @@
       "menu": "Menu",
       "close": "Close"
     },
-    "language": "English"
+    "language": "EN"
   }
 }
