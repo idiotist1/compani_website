@@ -6,31 +6,14 @@
         "name": "이름",
         "email": "이메일",
         "phone": "전화번호",
-        "message": "문의 내용",
-        "submit": "지원하기",
+        "url": "URL",
+        "submit": "제출",
         "placeholders": {
           "name": "홍길동",
           "email": "example@example.com",
           "phone": "010-1234-5678",
-          "message": "문의하실 내용을 자세히 적어주세요."
-        }
-      },
-      "contact_info": {
-        "title": "연락처 정보",
-        "phone": {
-          "title": "전화",
-          "info": "02-1234-5678",
-          "desc": "평일 09:00 - 18:00"
-        },
-        "email": {
-          "title": "이메일",
-          "info": "support@example.com",
-          "desc": "24시간 접수 가능"
-        },
-        "address": {
-          "title": "주소",
-          "info": "서울특별시 강남구 삼성동 123번지",
-          "desc": "본사"
+          "precautions": "입사지원자는 자유양식으로 관련 정보를 작성하여 제출할 수 있으며, 민감한 개인정보(주민등록번호, 연봉정보 등) 또는 직무 수행과 관계없는 정보(출신 지역, 신체정보, 결혼유무, 가족 인적사항 등)가 포함되지 않도록 주의하여 주십시오.",
+          "privacy": "Dyub(이하 “회사”라 함)은 인재 채용 (취업보호 대상자 확인)을 목적으로 다음과 같이 개인정보를 수집 및 이용합니다.\nㆍ목적 : 채용 적합성 판단 및 가산점 부여\nㆍ개인정보 항목 : 장애사항, 병역사항 또는 보훈사항\n ㆍ보유 기간 : 입사 지원일로부터 1년 (단, 법령에 특별한 규정이 있는 경우 관련 법령에 따라 일정기간 동안 보관)\n ※ 귀하는 민감정보 수집, 이용에 동의하지 않을 권리가 있습니다. 단, 인재 채용을 위하여 필요한 최소한의 민감 정보이므로, 동의를 해 주셔야 입사 지원이 가능합니다."
         }
       },
       "alerts": {
@@ -46,31 +29,14 @@
         "name": "Name",
         "email": "Email",
         "phone": "Phone",
-        "message": "Message",
+        "url": "URL",
         "submit": "Submit",
         "placeholders": {
           "name": "John Doe",
           "email": "example@example.com",
           "phone": "010-1234-5678",
-          "message": "Please provide detailed information about your inquiry."
-        }
-      },
-      "contact_info": {
-        "title": "Contact Information",
-        "phone": {
-          "title": "Phone",
-          "info": "02-1234-5678",
-          "desc": "Weekdays 09:00 - 18:00"
-        },
-        "email": {
-          "title": "Email",
-          "info": "support@example.com",
-          "desc": "24/7 Available"
-        },
-        "address": {
-          "title": "Address",
-          "info": "123, Samsung-dong, Gangnam-gu, Seoul",
-          "desc": "Headquarters"
+          "precautions": "Applicants for employment can fill out and submit relevant information in a free form and should take cautionary measures not to include sensitive personal information (resident registration number, salary information, etc.) or information related to job performance (region of origin, physical information, marital status, family personal information, etc.). ",
+          "privacy": ""
         }
       },
       "alerts": {

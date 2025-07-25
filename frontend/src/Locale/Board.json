@@ -181,6 +181,11 @@
             "step": "04",
             "title": "Deployment & Maintenance",
             "desc": "Stable service operation and continuous improvement"
+          },
+          {
+            "step": "05",
+            "title": "최종 합격 및 입사",
+            "desc": "수습기간 3개월 적용"
           }
         ]
       },

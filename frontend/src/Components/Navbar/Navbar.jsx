@@ -68,7 +68,7 @@ const NavBar = () => {
           value="ko"
           onClick={(e) => setLanguage(e.target.value)}
           className={`text-sm hidden lg:block px-1 py-1 ml-1 rounded-md hover:border-gray-500 transition duration-300
-    ${language === 'ko' ? ' text-white ring-2 ring-gray-400' : ''}`}
+    ${language === "ko" ? " text-white " : "text-gray-500"}`}
         >
           KO
         </button>
@@ -76,7 +76,7 @@ const NavBar = () => {
           value="en"
           onClick={(e) => setLanguage(e.target.value)}
           className={`text-sm hidden lg:block px-1 py-1 ml-1 rounded-md hover:border-gray-500 transition duration-300
-    ${language === 'en' ? ' text-white ring-2 ring-gray-400' : ''}`}
+    ${language === "en" ? " text-white " : "text-gray-500"}`}
         >
           EN
         </button>
@@ -103,6 +103,7 @@ const NavBar = () => {
           >
             <HiX />
           </button>
+
           <ul className="clear-both space-y-4 pt-8 text-lg">
             {menuItems.map((item) => (
               <MenuItem
@@ -113,14 +114,25 @@ const NavBar = () => {
               />
             ))}
           </ul>
-          <select
-            value={language}
-            onChange={(e) => setLanguage(e.target.value)}
-            className="mt-6 w-full px-3 py-1 border rounded-md bg-black hover:border-blue-500 transition duration-300"
-          >
-            <option value="ko">{translations.ko.language}</option>
-            <option value="en">{translations.en.language}</option>
-          </select>
+
+          <div className="mt-8 space-y-4">
+            <button
+              value="ko"
+              onClick={(e) => setLanguage(e.target.value)}
+              className={`text-sm px-1 py-1 ml-1 rounded-md hover:border-gray-500 transition duration-300
+    ${language === "ko" ? " text-white" : "text-gray-500"}`}
+            >
+              KO
+            </button>
+            <button
+              value="en"
+              onClick={(e) => setLanguage(e.target.value)}
+              className={`text-sm px-1 py-1 ml-1 rounded-md hover:border-gray-500 transition duration-300
+    ${language === "en" ? " text-white " : "text-gray-500"}`}
+            >
+              EN
+            </button>
+          </div>
         </div>
       </div>
     </nav>

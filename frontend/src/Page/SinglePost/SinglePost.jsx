@@ -16,7 +16,6 @@ import { styled } from "@mui/material/styles";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ShareIcon from "@mui/icons-material/Share";
-import Button from "@mui/material/Button";
 import ContactLocale from "../../Locale/SinglePost.json";
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
@@ -39,7 +38,7 @@ const SinglePost = () => {
   const [loading, setLoading] = useState(true);
   const [openSnackbar, setOpenSnackbar] = useState(false);
 
-    const fadeInVariants = {
+  const fadeInVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: (i) => ({
       opacity: 1,
@@ -65,7 +64,7 @@ const SinglePost = () => {
     fetchPost();
   }, [id]);
 
-    const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
@@ -79,7 +78,7 @@ const SinglePost = () => {
           name: "",
           email: "",
           phone: "",
-          message: "",
+          url: "",
           status: "in progress",
         });
       }
@@ -124,13 +123,13 @@ const SinglePost = () => {
     const keys = key.split(".");
     return keys.reduce((obj, k) => obj[k], ContactLocale[language]);
   };
-    const [formData, setFormData] = useState({
-      name: "",
-      email: "",
-      phone: "",
-      message: "",
-      status: "in progress",
-    });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+    status: "in progress",
+  });
 
   if (loading) {
     return (
@@ -160,9 +159,7 @@ const SinglePost = () => {
         <StyledPaper elevation={2}>
           <PostHeader>
             <Box sx={{ flexGrow: 1 }}>
-              <Typography variant="h4" component="h1" gutterBottom>
-                {post.title}
-              </Typography>
+              <p className="text-4xl">{post.title}</p>
             </Box>
           </PostHeader>
 
@@ -177,9 +174,9 @@ const SinglePost = () => {
 
           {post.fileUrl && post.fileUrl.length > 0 && (
             <Box sx={{ mt: 4, p: 2, bgcolor: "grey.50", borderRadius: 1 }}>
-              <Typography variant="subtitle2" gutterBottom>
+              <p variant="subtitle2" gutterBottom>
                 첨부파일
-              </Typography>
+              </p>
               <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
                 {post.fileUrl.map((file, index) => (
                   <Chip
@@ -213,7 +210,7 @@ const SinglePost = () => {
                   <input
                     type="text"
                     name="name"
-                    className="w-full p-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-colors duration-300"
+                    className="w-full p-4 py-3 rounded-lg border border-gray-300 focus:border-black focus:ring-2 focus:ring-gray-500 transition-colors duration-300"
                     placeholder={t("contact.form.placeholders.name")}
                     required
                     value={formData.name}
@@ -227,7 +224,7 @@ const SinglePost = () => {
                   <input
                     type="email"
                     name="email"
-                    className="w-full p-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-colors duration-300"
+                    className="w-full p-4 py-3 rounded-lg border border-gray-300 focus:border-black focus:ring-2 focus:ring-gray-500 transition-colors duration-300"
                     placeholder={t("contact.form.placeholders.email")}
                     required
                     value={formData.email}
@@ -241,7 +238,7 @@ const SinglePost = () => {
                   <input
                     type="tel"
                     name="phone"
-                    className="w-full p-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-colors duration-300"
+                    className="w-full p-4 py-3 rounded-lg border border-gray-300 focus:border-black focus:ring-2 focus:ring-gray-500 transition-colors duration-300"
                     placeholder={t("contact.form.placeholders.phone")}
                     required
                     value={formData.phone}
@@ -250,27 +247,67 @@ const SinglePost = () => {
                 </div>
                 <div>
                   <label className="block text-gray-700 font-medium mb-2">
-                    {t("contact.form.message")}
+                    {t("contact.form.url")}
                   </label>
-                  <textarea
-                    name="message"
-                    className="w-full p-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-colors duration-300 h-40"
-                    placeholder={t("contact.form.placeholders.message")}
+                  <input
+                    name="url"
+                    className="w-full p-4 py-3 rounded-lg border border-gray-300 focus:border-black focus:ring-2 focus:ring-gray-500 transition-colors duration-300"
                     required
-                    value={formData.message}
+                    value={formData.url}
                     onChange={handleChange}
                   />
                 </div>
-                <button className="w-full bg-blue-600 text-white py-4 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-300">
-                  {t("contact.form.submit")}
-                </button>
+                <div>
+                  <label className="block text-gray-700 font-medium mb-2">
+                    이력서 제출 유의사항
+                  </label>
+                  <textarea
+                    className="w-full p-4 py-3 rounded-lg border text-black border-gray-300 focus:border-black focus:ring-2 focus:ring-gray-500 transition-colors duration-300 h-40"
+                    value={t("contact.form.placeholders.precautions")}
+                    required
+                    disabled
+                  />
+                  <div className="flex items-center space-x-2">
+                    <input
+                      type="checkbox"
+                      id="agreementCheckbox"
+                      required
+                      className="form-checkbox h-5 w-5 text-blue-600"
+                    />
+                    <label htmlFor="agreementCheckbox" className="text-black">
+                      동의
+                    </label>
+                  </div>
+
+                  <div className="mt-6 mb-6">
+                    <label className="block text-gray-700 font-medium mb-2">
+                      개인정보 수집 및 이용에 대한 동의
+                    </label>
+                    <textarea
+                      className="w-full p-4 py-3 rounded-lg border text-black border-gray-300 focus:border-black focus:ring-2 focus:ring-gray-500 transition-colors duration-300 h-40"
+                      value={t("contact.form.placeholders.privacy").replace(/\\n/g, '\n')}
+                      required
+                      disabled
+                    />
+                    <div className="flex items-center space-x-2">
+                      <input
+                        type="checkbox"
+                        id="agreementCheckbox"
+                        required
+                        className="form-checkbox h-5 w-5 text-blue-600"
+                      />
+                      <label htmlFor="agreementCheckbox" className="text-black">
+                        동의
+                      </label>
+                    </div>
+                  </div>
+                  <button className="w-full bg-black text-white py-4 rounded-lg font-medium hover:bg-gray-700 transition-colors duration-300">
+                    {t("contact.form.submit")}
+                  </button>
+                </div>
               </div>
             </form>
           </div>
-
-          <Box className="mt-4 flex justify-center space-x-2 text-lg font-bold">
-            <Button variant="contained">지원하기</Button>
-          </Box>
         </StyledPaper>
 
         <Snackbar
